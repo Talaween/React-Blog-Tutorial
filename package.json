@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "0.1.0",
+  "name": "react-blog-tutorial",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "formik": "^1.3.1",
@@ -24,5 +24,30 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Talaween/React-Blog-Tutorial.git"
+  },
+  "keywords": [
+    "React",
+    "Blog",
+    "Tutorial",
+    "Mahmoud",
+    "Awad",
+    "Talaween",
+    "React",
+    "304cem",
+    "Web",
+    "API"
+  ],
+  "author": "Mahmoud Awad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Talaween/React-Blog-Tutorial/issues"
+  },
+  "homepage": "https://github.com/Talaween/React-Blog-Tutorial#readme"
 }
