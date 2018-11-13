@@ -13,6 +13,7 @@ import Data from './Data';
 import react_logo from './img/logo.svg';
 
 //define a new class for the App
+//test
 class App extends Component {
 
   article = [];
