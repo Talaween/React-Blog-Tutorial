@@ -2,37 +2,39 @@
 import React, { Component } from 'react';
 //import the css for the app
 import './App.css';
-//import the Header component
+
+//import the app components
 import Header from './components/header/Header';
 import Grid from './components/grid/Grid';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
 
 import CallAPI from './CallAPI';
-import Data from './Data';
 
 import react_logo from './img/logo.svg';
 
 //define a new class for the App
 class App extends Component {
 
-  article = [];
-
   constructor(props){
 
     super(props);
 
     this.state = {
-      currentView : "home"
+      currentView : "login",
+      items : [],
+      homeItems: [],
+      currentArticle: null
     };
 
     this.onSearch = this.onSearch.bind(this);
     this.handleThumbnailClicked = this.handleThumbnailClicked.bind(this);
     this.showHome = this.showHome.bind(this);
+    this.updateBlogsData = this.updateBlogsData.bind(this);
 
   }
+  
   onSearch(term){
-
     console.log("search on term:" + term);
   }
   
@@ -43,21 +45,61 @@ class App extends Component {
 
     if(this.state.currentView !== "home")
       return;
-
-    this.setState({currentView: "article"});
-    let len = Data.items.length;
+    
+    let len = this.state.items.length;
     
     for(let i = 0; i < len ; i++){
 
-      if(Data.items[i].id === key){
-        this.article.push(Data.items[i]);
+      if(this.state.items[i].id === key){
+        
+        let item = Object.assign({}, this.state.items[i]);
+
+        this.setState({
+          currentView: "article",
+          currentArticle: item
+        });
       }
     }
   }
 
+  updateBlogsData(data){
+
+    let data2 = data.map( item => {
+
+      let shortBody = item.body.substring(0, 128);
+
+      return {
+        id: item.id,
+        title: item.title,
+        authorId : item.authorId,
+        body: shortBody,
+        registrationDate: item.registrationDate,
+        photo: item.photo
+      }
+
+      
+    });
+
+    this.setState({
+      items : data,
+      homeItems: data2,
+      currentView: "home"
+    });
+
+  }
+
   showHome(){
-    this.article.pop();
+    
+    if(this.state.currentArticle !== null)
+      this.setState({currentArticle: null});
+    
     this.setState({currentView:"home"});
+  }
+
+  componentDidMount(){
+
+    //fetch the data
+    new CallAPI().getBlogs(12, 1, this.updateBlogsData);
   }
 
   render() {
@@ -65,11 +107,11 @@ class App extends Component {
     let whatToRender;
 
     if(this.state.currentView === "home"){
-      whatToRender = <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+      whatToRender = <Grid items={this.state.homeItems} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
     }
     else if(this.state.currentView === "article"){
-
-      whatToRender = <Grid items={this.article} colClass="col-m-6" onClick={this.handleThumbnailClicked} rowLength={1} />;
+      let tempArr = [this.state.currentArticle];
+      whatToRender = <Grid items={tempArr} colClass="col-m-6" onClick={this.handleThumbnailClicked} rowLength={1} />;
     }
     else if(this.state.currentView === "login"){
       whatToRender = <Login loginButtonColor="#800000"/>;

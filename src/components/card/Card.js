@@ -42,7 +42,6 @@ class Card extends Component {
             toolTipMessage = "bookmark this";
         }
 
-
         return (
 
             //this is JSX code which is very similar to HTML we already know

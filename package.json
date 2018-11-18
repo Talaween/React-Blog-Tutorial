@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "formik": "^1.3.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -28,7 +29,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {},
-  "repository": {
+    "repository": {
     "type": "git",
     "url": "git+https://github.com/Talaween/React-Blog-Tutorial.git"
   },

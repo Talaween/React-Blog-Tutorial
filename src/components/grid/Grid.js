@@ -53,28 +53,26 @@ class Grid extends Component {
                 {fillEmptySpace}
                 {cards.map((item, index) =>
                     <div className={this.props.colClass} key={item.id}>
-                        <Card   image={item.image} 
+                        <Card   image={item.photo} 
                                 title={item.title} 
-                                article={item.article} 
+                                article={item.body} 
                                 onClick = {this.props.onClick}
                                 id ={item.id}
                         />
                     </div>
                 )}  
             </div>
-           
         );
-
     }
 
     //this function will render the entire grid
     render() {
 
+        console.log("==>" + this.props.items.length);
         //in case no array recieved for rows return to avoid run time erros
         if(this.props.items == null){
             return null;
         }
-
         //this code will divide the items array into small arrays 
         //where each array contain the data required for each row
 
