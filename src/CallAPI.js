@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from './config';
 
-//an array will contain the data for our thumbnails
+//this class will have all the methods that we need to connect to the API
 class CallAPI {
 
     login(data){

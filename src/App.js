@@ -20,6 +20,7 @@ class App extends Component {
 
     super(props);
 
+    //we setup our initial state in the constuctor
     this.state = {
       currentView : "login",
       items : [],
@@ -64,6 +65,10 @@ class App extends Component {
 
   updateBlogsData(data){
 
+    //when displaying home screen we need to show only portion of the body
+    //so we create a new data and map the new items to exactly the same 
+    //however we extract just a portion of the original body and use this array
+    //to display home thumbnails
     let data2 = data.map( item => {
 
       let shortBody = item.body.substring(0, 128);
@@ -90,12 +95,16 @@ class App extends Component {
 
   showHome(){
     
+    //in case we were showing an article, remove it from the state
     if(this.state.currentArticle !== null)
       this.setState({currentArticle: null});
     
     this.setState({currentView:"home"});
   }
 
+  //we will use this life cycle method to call the data
+  //we need to call the data once the component is ready
+  //otherwise setting state will not work properly
   componentDidMount(){
 
     //fetch the data
@@ -109,6 +118,8 @@ class App extends Component {
     if(this.state.currentView === "home"){
       whatToRender = <Grid items={this.state.homeItems} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
     }
+    //becuase our grid component expects an array but we need to show only one item
+    //so we will add that item to an array and send the array to the grid
     else if(this.state.currentView === "article"){
       let tempArr = [this.state.currentArticle];
       whatToRender = <Grid items={tempArr} colClass="col-m-6" onClick={this.handleThumbnailClicked} rowLength={1} />;
