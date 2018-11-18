@@ -8,12 +8,12 @@ import Grid from './components/grid/Grid';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
 
+import CallAPI from './CallAPI';
 import Data from './Data';
 
 import react_logo from './img/logo.svg';
 
 //define a new class for the App
-//test
 class App extends Component {
 
   article = [];
@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      currentView : "login"
+      currentView : "home"
     };
 
     this.onSearch = this.onSearch.bind(this);
@@ -56,7 +56,6 @@ class App extends Component {
   }
 
   showHome(){
-    console.log("click title");
     this.article.pop();
     this.setState({currentView:"home"});
   }
@@ -66,7 +65,7 @@ class App extends Component {
     let whatToRender;
 
     if(this.state.currentView === "home"){
-      whatToRender = <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={2} />
+      whatToRender = <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
     }
     else if(this.state.currentView === "article"){
 

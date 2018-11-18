@@ -45,7 +45,7 @@ class Header extends Component {
                     <div className="search-container">
                         <form action="">
                             <input type="text" placeholder="Search.." name="txtSearch" onChange={this.handleTextChange} value={this.state.searchTerm}/>
-                            <button type="submit" onClick={this.handleSearchSubmit}><FontAwesome name='fas fa-search' /></button>
+                            <button type="submit" onClick={(e) =>{ e.preventDefault(); this.props.onSearchClick(this.state.searchTerm)} }><FontAwesome name='fas fa-search' /></button>
                         </form>
                     </div>
                 </div>

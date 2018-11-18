@@ -1,6 +1,6 @@
-# Project Title
+# React Blog Tutorial
 
-React Blog Tutorial
+A React Blog Tutorial created for begginer to teach them all necessary information to get up and running developing web apps using react 
 
 ## Getting Started
 
@@ -18,35 +18,26 @@ Visual Studio Code
 
 ### Installing
 
-to run the project follow the following steps
+to run the project follow the following steps:
 
-first open the folder with visual studio code
+1. first open the folder with visual studio code
 
-inside visual studio code, go to the integrated terminal and run the following command
+2. inside visual studio code, go to the integrated terminal and run the following command
 
 ```
 npm install
 ```
-then run the project
+3. then to run the project
 
 ```
 npm start
 ```
 
-the project should be running in the browser, make sure you are also running the back-end API to make sure the proect is fully working
+4. make sure you are also running the back-end API tofor the proect to be fully working
 
 ## Running the tests
 
 TBA
-
-### Break down into end to end tests
-
-TBA
-
-
-### And coding style tests
-
-ABA
 
 ## Deployment
 
@@ -60,14 +51,14 @@ npm build
 
 * [React](http://reactjs.org/) - The web framework used
 * [NPM](https://npmjs.com) - Dependency Management
-* [Formik] (https://github.com/jaredpalmer/formik) - Used to create web forms
-* [Yup] (https://github.com/jquense/yup) - Used to validate web forms
-* [React-Font-Awesome] (https://github.com/jquense/yup) - Used to validate web forms
+* [Formik](https://github.com/jaredpalmer/formik) - Used to create web forms
+* [Yup](https://github.com/jquense/yup) - Used to validate web forms
+* [React-Font-Awesome](https://github.com/jquense/yup) - Used to validate web forms
 
 
 ## Authors
 
-* **Mahmoud Awad** - *Initial work* - [Talaween](https://github.com/talaween)
+* **Mahmoud Awad** - *developer* - [Talaween](https://github.com/talaween)
 
 ## License
 
@@ -77,3 +68,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * Coventry University EEC School
 * Mark Tyres
+* W3 Schools
