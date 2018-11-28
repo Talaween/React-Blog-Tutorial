@@ -29,7 +29,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {},
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/Talaween/React-Blog-Tutorial.git"
   },

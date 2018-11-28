@@ -11,7 +11,7 @@ import Signup from './components/signup/Signup';
 
 import CallAPI from './CallAPI';
 
-import react_logo from './img/logo.svg';
+import logo from './img/logo.png';
 
 //define a new class for the App
 class App extends Component {
@@ -25,7 +25,11 @@ class App extends Component {
       currentView : "login",
       items : [],
       homeItems: [],
-      currentArticle: null
+      currentArticle: null,
+      user_data: {
+        username: '',
+        password: ''
+      }
     };
 
     this.onSearch = this.onSearch.bind(this);
@@ -81,8 +85,6 @@ class App extends Component {
         registrationDate: item.registrationDate,
         photo: item.photo
       }
-
-      
     });
 
     this.setState({
@@ -93,6 +95,18 @@ class App extends Component {
 
   }
 
+  loginUser(){
+
+    new CallAPI().login(this.state.user_data, (error, result) => {
+
+      //if login successful we need to keep track of username and password
+      console.log( error + ':' + result);
+
+      //otherwise we need to notify the login component to display error in username or password
+
+    });
+
+  }
   showHome(){
     
     //in case we were showing an article, remove it from the state
@@ -107,8 +121,6 @@ class App extends Component {
   //otherwise setting state will not work properly
   componentDidMount(){
 
-    //fetch the data
-    new CallAPI().getBlogs(12, 1, this.updateBlogsData);
   }
 
   render() {
@@ -125,7 +137,7 @@ class App extends Component {
       whatToRender = <Grid items={tempArr} colClass="col-m-6" onClick={this.handleThumbnailClicked} rowLength={1} />;
     }
     else if(this.state.currentView === "login"){
-      whatToRender = <Login loginButtonColor="#800000"/>;
+      whatToRender = <Login loginButtonColor="#800000" onSubmit={this.loginUser}/>;
     }
     else if(this.state.currentView === "logout"){
       whatToRender = null;
@@ -140,7 +152,7 @@ class App extends Component {
     // pass the thumbnails and set the css responsive class
     return (
       <div>
-        <Header title="My Own Blog" logo={react_logo} onSearchClick={this.onSearch} backgroundColor="#800000" onClickTitle={this.showHome} />
+        <Header title="My Own Blog" logo={logo} onSearchClick={this.onSearch} backgroundColor="#800000" onClickTitle={this.showHome} />
         {whatToRender}
       </div>
     );
