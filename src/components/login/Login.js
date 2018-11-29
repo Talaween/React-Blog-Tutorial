@@ -44,10 +44,11 @@ class Login extends Component {
         newErrors.txtUsername = this.state.txtUsername === '' ? true:false;
         newErrors.txtPassword = this.state.txtPassword === '' ? true:false;    
         
-       if(newErrors === {}){
+       if(newErrors.txtUsername === false && newErrors.txtPassword === false){
             this.props.onSubmit({
-                username: this.state.username,
-                password: this.data.password
+                username: this.state.txtUsername,
+                password: this.state.txtPassword,
+                rememberMe: false
             })
        }
        else{

@@ -16,6 +16,8 @@ import logo from './img/logo.png';
 //define a new class for the App
 class App extends Component {
 
+  api = new CallAPI();
+
   constructor(props){
 
     super(props);
@@ -34,8 +36,9 @@ class App extends Component {
 
     this.onSearch = this.onSearch.bind(this);
     this.handleThumbnailClicked = this.handleThumbnailClicked.bind(this);
-    this.showHome = this.showHome.bind(this);
     this.updateBlogsData = this.updateBlogsData.bind(this);
+    this.loginUser = this.loginUser.bind(this);
+    this.showHome = this.showHome.bind(this);
 
   }
   
@@ -67,8 +70,11 @@ class App extends Component {
     }
   }
 
-  updateBlogsData(data){
+  updateBlogsData(err, data){
 
+    if(err){
+        return;
+    }
     //when displaying home screen we need to show only portion of the body
     //so we create a new data and map the new items to exactly the same 
     //however we extract just a portion of the original body and use this array
@@ -95,14 +101,19 @@ class App extends Component {
 
   }
 
-  loginUser(){
+  loginUser(userData){
 
-    new CallAPI().login(this.state.user_data, (error, result) => {
+    this.api.login(userData, (err, data) => {
 
-      //if login successful we need to keep track of username and password
-      console.log( error + ':' + result);
-
-      //otherwise we need to notify the login component to display error in username or password
+        if(err){
+          //we need to notify the login component to display error in username or password
+          console.log('error')
+          return;
+        }
+        
+        //if login successful we need to keep track of username and password 
+        //and show user home screen
+       this.api.getBlogs(12, 1, this.updateBlogsData);
 
     });
 
@@ -114,6 +125,8 @@ class App extends Component {
       this.setState({currentArticle: null});
     
     this.setState({currentView:"home"});
+     
+   
   }
 
   //we will use this life cycle method to call the data
