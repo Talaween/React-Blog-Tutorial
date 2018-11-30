@@ -23,6 +23,7 @@ class App extends Component {
     super(props);
 
     //we setup our initial state in the constuctor
+    //by default we will show login component at the first time the app starts
     this.state = {
       currentView : "login",
       items : [],
@@ -34,6 +35,8 @@ class App extends Component {
       }
     };
 
+    //bind all the functions in the class so that the keyword "this"
+    //will not change its context and points to another object
     this.onSearch = this.onSearch.bind(this);
     this.handleThumbnailClicked = this.handleThumbnailClicked.bind(this);
     this.updateBlogsData = this.updateBlogsData.bind(this);
@@ -41,7 +44,7 @@ class App extends Component {
     this.showHome = this.showHome.bind(this);
 
   }
-  
+  //this function will be called by the header component when the user click search button
   onSearch(term){
     console.log("search on term:" + term);
   }
@@ -49,13 +52,13 @@ class App extends Component {
   //we will pass this function to card component so we will handle which thumbnail was clicked
   handleThumbnailClicked(key){
     
-    console.log("item with id:" + key + " was clicked");
-
+    //ignore if we are showing something else otherthan the grid of thumbnails 
     if(this.state.currentView !== "home")
       return;
     
     let len = this.state.items.length;
     
+    //iterate through the items and find the one matching the clicked id
     for(let i = 0; i < len ; i++){
 
       if(this.state.items[i].id === key){
@@ -70,6 +73,7 @@ class App extends Component {
     }
   }
 
+  //we will call this function to create a copy of the data and set our state to home
   updateBlogsData(err, data){
 
     if(err){
@@ -96,11 +100,13 @@ class App extends Component {
     this.setState({
       items : data,
       homeItems: data2,
-      currentView: "home"
     });
+
+    this.showHome();
 
   }
 
+  //this function will be called by the login component when the usre tries to sign in
   loginUser(userData){
 
     this.api.login(userData, (err, data) => {
@@ -118,6 +124,7 @@ class App extends Component {
     });
 
   }
+  //this will show the home
   showHome(){
     
     //in case we were showing an article, remove it from the state
@@ -134,6 +141,8 @@ class App extends Component {
   //otherwise setting state will not work properly
   componentDidMount(){
 
+      //window.history.pushState("object or string", "Title", "/test");
+    
   }
 
   render() {
