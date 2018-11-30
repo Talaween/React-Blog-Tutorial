@@ -32,7 +32,8 @@ class App extends Component {
       user_data: {
         username: '',
         password: ''
-      }
+      },
+      loginError: false
     };
 
     //bind all the functions in the class so that the keyword "this"
@@ -113,6 +114,7 @@ class App extends Component {
 
         if(err){
           //we need to notify the login component to display error in username or password
+          this.setState({loginError: true})
           console.log('error')
           return;
         }
@@ -159,7 +161,7 @@ class App extends Component {
       whatToRender = <Grid items={tempArr} colClass="col-m-6" onClick={this.handleThumbnailClicked} rowLength={1} />;
     }
     else if(this.state.currentView === "login"){
-      whatToRender = <Login loginButtonColor="#800000" onSubmit={this.loginUser}/>;
+      whatToRender = <Login loginButtonColor="#800000" onSubmit={this.loginUser} loginError={this.state.loginError}/>;
     }
     else if(this.state.currentView === "logout"){
       whatToRender = null;

@@ -68,6 +68,7 @@ class Login extends Component {
                         <img src={login_avatar} alt="Avatar" className="avatar" />
                     </div>
                     <div className="container">
+                        {this.props.loginError ? <div className="error">Wrong username or password</div>: null}
                         <label htmlFor="txtUsername"><b>Username</b></label>
                         <input type="text" placeholder="Enter Username" name="txtUsername" onChange={this.handleInputChange} value={this.state.txtUsername} />
                          {this.state.errors.txtUsername ? <div className="error">Username is required</div>: null}
